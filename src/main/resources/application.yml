@@ -1,3 +1,10 @@
+meli:
+  remote:
+    circuit-breaker:
+      timeout: ${CIRCUIT_BREAKER_TIMEOUT:2000}
+    feign:
+      timeout: ${FEIGN_TIMEOUT:10000}
+
 post-client:
   ribbon:
     listOfServers: localhost:3000
@@ -9,6 +16,11 @@ ribbon:
 feign:
   histryx:
     enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: ${meli.remote.feign.timeout}
+        readTimeout: ${meli.remote.feign.timeout}
   postService:
       config:
         default:
@@ -19,4 +31,5 @@ logging.level.com.newgen.cloudstrategies.infrastructure.postService.PostClient: 
 resilience4j.circuitbreaker:
   backends:
     post-api:
-      waitInterval: 4000
+      timeoutDuration: ${meli.remote.circuit-breaker.timeout}
+      cancelRunningFuture: true

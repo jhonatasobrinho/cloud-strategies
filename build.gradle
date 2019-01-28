@@ -54,6 +54,7 @@ dependencies {
     compile "org.springframework.cloud:spring-cloud-starter-ribbon:${springCloudDependenciesVersion}"
     compile "io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}"
     compile "io.github.resilience4j:resilience4j-circuitbreaker:${resilience4jVersion}"
+    compile "io.github.resilience4j:resilience4j-timelimiter:${resilience4jVersion}"
     compile "org.projectlombok:lombok:1.18.2"
 
     developmentOnly "org.springframework.boot:spring-boot-devtools"
