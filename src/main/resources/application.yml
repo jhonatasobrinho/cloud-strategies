@@ -1,0 +1,22 @@
+post-client:
+  ribbon:
+    listOfServers: localhost:3000
+
+ribbon:
+  eureka:
+    enabled: false
+
+feign:
+  histryx:
+    enabled: true
+  postService:
+      config:
+        default:
+          loggerLevel: full
+
+logging.level.com.newgen.cloudstrategies.infrastructure.postService.PostClient: DEBUG
+
+resilience4j.circuitbreaker:
+  backends:
+    post-api:
+      waitInterval: 4000
